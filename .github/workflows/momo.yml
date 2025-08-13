@@ -103,10 +103,18 @@ jobs:
       - name: Check file sizes
         run: |
           ls -lh makeself/momo_*.run
-          mv makeself/momo_*.run ${{ github.workspace }}
+
+      - name: Generate new tag & release
+        uses: softprops/action-gh-release@v2.1.0
+        with:
+          tag_name: ${{ env.LATEST_TAG }}
+          target_commitish: ${{ github.ref_name }}
+          prerelease: false
+          body_path: ${{ github.workspace }}/momo.md
 
       - name: Upload run files as release assets
-        uses: actions/upload-artifact@main
+        uses: softprops/action-gh-release@v2.1.0
         with:
-          name: momo-${{ env.LATEST_TAG }}
-          path: ${{ env.FIRMWARE }}
+          tag_name: ${{ env.LATEST_TAG }}
+          name: "momo-${{ env.LATEST_TAG }}"
+          files: makeself/momo_*.run
