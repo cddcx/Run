@@ -108,5 +108,5 @@ jobs:
       - name: Upload run files as release assets
         uses: actions/upload-artifact@main
         with:
-          name: momo-${{ env.LATEST_TAG }}
+          name: makeself/momo-${{ env.LATEST_TAG }}
           path: ${{ env.FIRMWARE }}
