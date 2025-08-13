@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@main
+        uses: actions/checkout@v3
       
       - name: Fetch latest release tag from momo
         id: fetch_latest_tag
@@ -106,6 +106,8 @@ jobs:
 
       - name: Generate new tag & release
         uses: softprops/action-gh-release@v2.1.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ env.LATEST_TAG }}
           target_commitish: ${{ github.ref_name }}
@@ -118,3 +120,6 @@ jobs:
           tag_name: ${{ env.LATEST_TAG }}
           name: "momo-${{ env.LATEST_TAG }}"
           files: makeself/momo_*.run
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
