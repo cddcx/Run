@@ -100,7 +100,6 @@ jobs:
           ./makeself.sh momo_x86_64/ momo_${{ env.LATEST_TAG }}_x86_64.run "by github action" ./install.sh
           ./makeself.sh momo_aarch64_cortex-a53/ momo_${{ env.LATEST_TAG }}_aarch64_cortex-a53.run "by github action" ./install.sh
           
-
       - name: Check file sizes
         run: |
           ls -lh makeself/momo_*.run
@@ -109,7 +108,5 @@ jobs:
       - name: Upload run files as release assets
         uses: actions/upload-artifact@main
         with:
-          tag_name: ${{ env.LATEST_TAG }}
           name: "momo-${{ env.LATEST_TAG }}"
-          files: makeself/momo_*.run
           path: ${{ env.FIRMWARE }}
