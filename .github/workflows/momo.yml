@@ -30,8 +30,9 @@ jobs:
           echo "LATEST_TAG=$latest_tag" >> $GITHUB_ENV
           
       - name: Clone makeself repository
-        run: git clone https://github.com/megastep/makeself.git
-             ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
+        run: 
+          git clone https://github.com/megastep/makeself.git
+          ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
 
       - name: Download latest momo files
         run: |
