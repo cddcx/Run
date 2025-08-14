@@ -16,8 +16,12 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: 准备结束
+        uses: actions/checkout@main
+
+      - name: 设置发布环境
+        run: |
+          echo WORKDIR="/builder" >> "$GITHUB_ENV"
       
       - name: Fetch latest release tag from momo
         id: fetch_latest_tag
@@ -27,6 +31,7 @@ jobs:
           
       - name: Clone makeself repository
         run: git clone https://github.com/megastep/makeself.git
+             ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
 
       - name: Download latest momo files
         run: |
@@ -104,22 +109,8 @@ jobs:
         run: |
           ls -lh makeself/momo_*.run
 
-      - name: Generate new tag & release
-        uses: softprops/action-gh-release@v2.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 上传固件
+        uses: actions/upload-artifact@main
         with:
-          tag_name: ${{ env.LATEST_TAG }}
-          target_commitish: ${{ github.ref_name }}
-          prerelease: false
-          body_path: ${{ github.workspace }}/momo.md
-
-      - name: Upload run files as release assets
-        uses: softprops/action-gh-release@v2.1.0
-        with:
-          tag_name: ${{ env.LATEST_TAG }}
           name: "momo-${{ env.LATEST_TAG }}"
-          files: makeself/momo_*.run
-          token: ${{ secrets.GITHUB_TOKEN }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          path: ${{ env.FIRMWARE }}
