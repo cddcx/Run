@@ -5,7 +5,7 @@
 # Author: wukongdaily
 # Blog: wkdaily.cpolar.cn
 #=================================================
-name: HomeProxy run
+name: HomeProxy
 
 on:
   workflow_dispatch:
@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
 
       - name: 📦 安装 makeself 工具
         run: sudo apt-get update && sudo apt-get install -y makeself curl
@@ -70,4 +70,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: "homeproxy-${{ steps.clean_version.outputs.cleaned_version }}"
-          path: ${{ github.workspace }}/makeself          
+          path: ${{ github.workspace }}          
