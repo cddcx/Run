@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: Passwall2 run
+name: Passwall2
 
 on:
   workflow_dispatch:
