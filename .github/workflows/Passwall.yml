@@ -104,4 +104,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: "PassWall-${{ env.LATEST_TAG }}"
-          path: ${{ github.workspace }}/makeself
+          path: ${{ github.workspace }}
