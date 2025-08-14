@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: Make nikki run files for 23.05
+name: nikki
 
 on:
   workflow_dispatch:
@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@main
       
       - name: Fetch latest release tag from nikki
         id: fetch_latest_tag
@@ -111,4 +111,4 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: "nikki-${{ env.LATEST_TAG }}"
-          path: ${{ github.workspace }}/makeself
+          path: ${{ github.workspace }}
