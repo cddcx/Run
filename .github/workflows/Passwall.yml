@@ -100,8 +100,13 @@ jobs:
           fi
           echo -e "$extra_content\n\n$release_notes" > release_notes.md
 
+      - name: 整理文件
+        run: |
+          mkdir -p dcx
+          mv makeself/*.run dcx/
+          
       - name: 上传固件
         uses: actions/upload-artifact@main
         with:
           name: "PassWall-${{ env.LATEST_TAG }}"
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/dcx
