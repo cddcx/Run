@@ -32,7 +32,6 @@ jobs:
       - name: Clone makeself repository
         run: 
           git clone https://github.com/megastep/makeself.git
-          ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
 
       - name: Download latest momo files
         run: |
@@ -109,6 +108,7 @@ jobs:
       - name: Check file sizes
         run: |
           ls -lh makeself/momo_*.run
+          ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
 
       - name: 上传固件
         uses: actions/upload-artifact@main
