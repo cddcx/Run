@@ -109,5 +109,5 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: "momo-${{ env.LATEST_TAG }}"
-          files: makeself/momo_*.run
+          if-no-files-found: makeself/momo_*.run
           path: ${{ env.FIRMWARE }}
