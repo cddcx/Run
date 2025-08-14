@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: Make momo run files 24.10
+name: momo
 
 on:
   workflow_dispatch:
