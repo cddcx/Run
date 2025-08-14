@@ -99,5 +99,5 @@ jobs:
         uses: actions/upload-artifact@main
         with:
           name: "OpenClash-${{ env.version }}"
-          path: ${{ github.workspace }}/makeself
+          path: ${{ github.workspace }}
 
