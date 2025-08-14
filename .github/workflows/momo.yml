@@ -105,8 +105,13 @@ jobs:
         run: |
           ls -lh makeself/momo_*.run
 
+      - name: 整理文件
+        run: |
+          mkdir -p dcx
+          mv makeself/*.run dcx/
+          
       - name: 上传固件
         uses: actions/upload-artifact@main
         with:
           name: "momo-${{ env.LATEST_TAG }}"
-          path: ${{ github.workspace }}
+          path: ${{ github.workspace }}/dcx
