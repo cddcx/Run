@@ -108,7 +108,6 @@ jobs:
       - name: Check file sizes
         run: |
           ls -lh makeself/momo_*.run
-          ln -sf /builder/makeself $GITHUB_WORKSPACE/makeself
 
       - name: 上传固件
         uses: actions/upload-artifact@main
