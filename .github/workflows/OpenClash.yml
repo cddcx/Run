@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: OpenClash run 
+name: OpenClash 
 
 on:
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
         run: mkdir -p OpenClash openclash-x86 openclash-a53
         
       - name: Checkout package branch to OpenClash directory
-        uses: actions/checkout@v4
+        uses: actions/checkout@main
         with:
           repository: vernesong/OpenClash
           path: OpenClash
