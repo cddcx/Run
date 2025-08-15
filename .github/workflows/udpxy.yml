@@ -21,9 +21,9 @@ jobs:
       - name: 📦 安装 makeself 工具
         run: sudo apt-get update && sudo apt-get install -y makeself curl
 
-      - name: 🚀 下载 homeproxy的所有ipk
+      - name: 🚀 下载 udpxy的所有ipk
         run: |
-          chmod +x shell/homeproxy.sh
+          chmod +x shell/udpxy.sh
           ./shell/udpxy.sh
 
       - name: 📋 拷贝 install.sh 到各平台目录
