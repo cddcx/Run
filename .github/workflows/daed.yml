@@ -68,7 +68,7 @@ jobs:
           mkdir -p dcx
           mv output/*.run dcx/
           
-      - name: 上传固件
+      - name: 上传软件
         uses: actions/upload-artifact@main
         with:
           name: "daed-${{ steps.clean_version.outputs.cleaned_version }}"
