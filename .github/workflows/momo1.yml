@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: momo
+name: momo1
 
 on:
   workflow_dispatch:
