@@ -73,5 +73,5 @@ jobs:
       - name: 上传软件
         uses: actions/upload-artifact@main
         with:
-          name: "homeproxy-${{ steps.clean_version.outputs.cleaned_version }}"
+          name: "udpxy-${{ steps.clean_version.outputs.cleaned_version }}"
           path: ${{ github.workspace }}/dcx          
