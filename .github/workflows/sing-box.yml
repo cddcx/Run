@@ -22,7 +22,7 @@ jobs:
       - name: Fetch latest release tag from momo
         id: fetch_latest_tag
         run: |
-          latest_tag=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/lates | jq -r '.tag_name')
+          latest_tag=$(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | jq -r '.tag_name')
           echo "LATEST_TAG=$latest_tag" >> $GITHUB_ENV
           
       - name: Clone makeself repository
@@ -31,8 +31,8 @@ jobs:
 
       - name: Download latest momo files
         run: |
-          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/lates | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_aarch64_cortex-a53.ipk"' | cut -d '"' -f 4)
-          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/lates | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_x86_64.ipk"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_aarch64_cortex-a53.ipk"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_x86_64.ipk"' | cut -d '"' -f 4)
 
       - name: Organize files for aarch64_cortex-a53&x86_64
         run: |
