@@ -31,8 +31,8 @@ jobs:
 
       - name: Download latest momo files
         run: |
-          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_aarch64_cortex-a53.ipk"' | cut -d '"' -f 4)
-          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*sing-box_*_openwrt_x86_64.ipk"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".sing-box_*_openwrt_aarch64_cortex-a53.ipk"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".sing-box_*_openwrt_x86_64.ipk"' | cut -d '"' -f 4)
 
       - name: Organize files for aarch64_cortex-a53&x86_64
         run: |
