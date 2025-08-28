@@ -31,16 +31,16 @@ jobs:
 
       - name: Download latest momo files
         run: |
-          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-momo/releases/latest | grep -oP '"browser_download_url":\s*".*momo_aarch64_cortex-a53-openwrt-24.10.tar.gz"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-momo/releases/latest | grep -oP '"browser_download_url":\s*".*momo_aarch64_cortex-a76-openwrt-24.10.tar.gz"' | cut -d '"' -f 4)
           curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-momo/releases/latest | grep -oP '"browser_download_url":\s*".*momo_x86_64-openwrt-24.10.tar.gz"' | cut -d '"' -f 4)
           tar --one-top-level=momo_aarch64_cortex-a53-openwrt-24.10 -xvzf momo_aarch64_cortex-a53-openwrt-24.10.tar.gz
           tar --one-top-level=momo_x86_64-openwrt-24.10 -xvzf momo_x86_64-openwrt-24.10.tar.gz
 
       - name: Organize files for aarch64_cortex-a53&x86_64
         run: |
-          mkdir momo_x86_64 momo_aarch64_cortex-a53
+          mkdir momo_x86_64 momo_aarch64_cortex-a76
           cp momo_x86_64-openwrt-24.10/*.ipk momo_x86_64/
-          cp momo_aarch64_cortex-a53-openwrt-24.10/*.ipk momo_aarch64_cortex-a53/
+          cp momo_aarch64_cortex-a76-openwrt-24.10/*.ipk momo_aarch64_cortex-a76/
           # 保存当前路径并进入目标目录
           pushd "momo_x86_64" >/dev/null || exit 1
           for file in *~*.ipk; do
@@ -58,7 +58,7 @@ jobs:
           done
           popd >/dev/null
 
-          pushd "momo_aarch64_cortex-a53" >/dev/null || exit 1
+          pushd "momo_aarch64_cortex-a76" >/dev/null || exit 1
           for file in *~*.ipk; do
           [ -e "$file" ] || continue
           # 构造新文件名，去除 ~ 字符
@@ -87,19 +87,19 @@ jobs:
           opkg install *.ipk
           EOF
           chmod +x momo_x86_64/install.sh
-          cp momo_x86_64/install.sh momo_aarch64_cortex-a53/install.sh
+          cp momo_x86_64/install.sh momo_aarch64_cortex-a76/install.sh
           
 
       - name: Move momo directories to makeself
         run: |
           mv momo_x86_64 makeself/
-          mv momo_aarch64_cortex-a53 makeself/
+          mv momo_aarch64_cortex-a76 makeself/
 
       - name: Create self-extracting packages
         run: |
           cd makeself
           ./makeself.sh momo_x86_64/ momo_${{ env.LATEST_TAG }}_x86_64.run "by github action" ./install.sh
-          ./makeself.sh momo_aarch64_cortex-a53/ momo_${{ env.LATEST_TAG }}_aarch64_cortex-a53.run "by github action" ./install.sh
+          ./makeself.sh momo_aarch64_cortex-a76/ momo_${{ env.LATEST_TAG }}_aarch64_cortex-a76.run "by github action" ./install.sh
           
       - name: Check file sizes
         run: |
