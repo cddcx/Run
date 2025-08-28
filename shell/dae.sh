@@ -4,7 +4,7 @@
 declare -A PLATFORMS=(
   ["x86_64"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/x86_64"
   ["aarch64_generic"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_generic"
-  ["aarch64_cortex-a76"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_cortex-a76"
+  ["aarch64_cortex-a76"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_cortex-a53"
 )
 
 # 各类包对应的目录
