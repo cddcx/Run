@@ -31,14 +31,14 @@ jobs:
 
       - name: Download latest momo files
         run: |
-          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*_openwrt_aarch64_cortex-a76.ipk"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*_openwrt_aarch64_cortex-a53.ipk"' | cut -d '"' -f 4)
           curl -LO $(curl -s https://api.github.com/repos/SagerNet/sing-box/releases/latest | grep -oP '"browser_download_url":\s*".*_openwrt_x86_64.ipk"' | cut -d '"' -f 4)
 
       - name: Organize files for aarch64_cortex-a53&x86_64
         run: |
-          mkdir sing-box_x86_64 sing-box_aarch64_cortex-a76
+          mkdir sing-box_x86_64 sing-box_aarch64_cortex-a53
           cp *_openwrt_x86_64.ipk sing-box_x86_64/
-          cp *_openwrt_aarch64_cortex-a76.ipk sing-box_aarch64_cortex-a76/
+          cp *_openwrt_aarch64_cortex-a53.ipk sing-box_aarch64_cortex-a53/
           # 保存当前路径并进入目标目录
           pushd "sing-box_x86_64" >/dev/null || exit 1
           for file in *~*.ipk; do
@@ -56,7 +56,7 @@ jobs:
           done
           popd >/dev/null
 
-          pushd "sing-box_aarch64_cortex-a76" >/dev/null || exit 1
+          pushd "sing-box_aarch64_cortex-a53" >/dev/null || exit 1
           for file in *~*.ipk; do
           [ -e "$file" ] || continue
           # 构造新文件名，去除 ~ 字符
@@ -85,19 +85,19 @@ jobs:
           opkg install *.ipk
           EOF
           chmod +x sing-box_x86_64/install.sh
-          cp sing-box_x86_64/install.sh sing-box_aarch64_cortex-a76/install.sh
+          cp sing-box_x86_64/install.sh sing-box_aarch64_cortex-a53/install.sh
           
 
       - name: Move momo directories to makeself
         run: |
           mv sing-box_x86_64 makeself/
-          mv sing-box_aarch64_cortex-a76 makeself/
+          mv sing-box_aarch64_cortex-a53 makeself/
 
       - name: Create self-extracting packages
         run: |
           cd makeself
           ./makeself.sh sing-box_x86_64/ sing-box_${{ env.LATEST_TAG }}_x86_64.run "by github action" ./install.sh
-          ./makeself.sh sing-box_aarch64_cortex-a76/ sing-box_${{ env.LATEST_TAG }}_aarch64_cortex-a76.run "by github action" ./install.sh
+          ./makeself.sh sing-box_aarch64_cortex-a53/ sing-box_${{ env.LATEST_TAG }}_aarch64_cortex-a53.run "by github action" ./install.sh
           
       - name: Check file sizes
         run: |
