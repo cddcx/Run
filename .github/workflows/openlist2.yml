@@ -101,13 +101,13 @@ jobs:
         run: |
           ls -lh makeself/openlist2_*.run
           
-      - name: Upload run files as release assets
-        uses: softprops/action-gh-release@v2.1.0
+      - name: 整理文件
+        run: |
+          mkdir -p dcx
+          mv makeself/*.run dcx/
+          
+      - name: 上传软件
+        uses: actions/upload-artifact@main
         with:
-          tag_name: openlist2
-          name: "luci-app-openlist2"
-          files: makeself/*.run
-          token: ${{ secrets.GITHUB_TOKEN }}
-          body: "[![Github](https://img.shields.io/badge/可套用国内加速站下载-FC7C0D?logo=github&logoColor=fff&labelColor=000&style=for-the-badge)](https://wkdaily.cpolar.cn/archives/1)"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: "openlist2-${{ env.LATEST_TAG }}"
+          path: ${{ github.workspace }}/dcx
