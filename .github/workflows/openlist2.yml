@@ -6,7 +6,7 @@
 # Blog: wkdaily.cpolar.cn
 #=================================================
 
-name: Make Openlist2 Run File
+name: Openlist2
 
 on:
   workflow_dispatch:
