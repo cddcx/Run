@@ -32,16 +32,16 @@ jobs:
 
       - name: Download latest nikki files
         run: |
-          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-nikki/releases/latest | grep -oP '"browser_download_url":\s*".*nikki_aarch64_cortex-a53-openwrt-24.10.tar.gz"' | cut -d '"' -f 4)
-          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-nikki/releases/latest | grep -oP '"browser_download_url":\s*".*nikki_x86_64-openwrt-24.10.tar.gz"' | cut -d '"' -f 4)
-          tar --one-top-level=nikki_aarch64_cortex-a53-openwrt-24.10 -xvzf nikki_aarch64_cortex-a53-openwrt-24.10.tar.gz
-          tar --one-top-level=nikki_x86_64-openwrt-24.10 -xvzf nikki_x86_64-openwrt-24.10.tar.gz
+          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-nikki/releases/latest | grep -oP '"browser_download_url":\s*".*nikki_aarch64_cortex-a53-openwrt-23.05.tar.gz"' | cut -d '"' -f 4)
+          curl -LO $(curl -s https://api.github.com/repos/nikkinikki-org/OpenWrt-nikki/releases/latest | grep -oP '"browser_download_url":\s*".*nikki_x86_64-openwrt-23.05.tar.gz"' | cut -d '"' -f 4)
+          tar --one-top-level=nikki_aarch64_cortex-a53-openwrt-23.05 -xvzf nikki_aarch64_cortex-a53-openwrt-23.05.tar.gz
+          tar --one-top-level=nikki_x86_64-openwrt-23.05 -xvzf nikki_x86_64-openwrt-23.05.tar.gz
 
       - name: Organize files for aarch64_cortex-a53&x86_64
         run: |
           mkdir nikki_x86_64 nikki_aarch64_cortex-a53
-          cp nikki_x86_64-openwrt-24.10/*.ipk nikki_x86_64/
-          cp nikki_aarch64_cortex-a53-openwrt-24.10/*.ipk nikki_aarch64_cortex-a53/
+          cp nikki_x86_64-openwrt-23.05/*.ipk nikki_x86_64/
+          cp nikki_aarch64_cortex-a53-openwrt-23.05/*.ipk nikki_aarch64_cortex-a53/
           # 保存当前路径并进入目标目录
           pushd "nikki_x86_64" >/dev/null || exit 1
           for file in *~*.ipk; do
