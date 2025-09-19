@@ -5,7 +5,7 @@
 # Author: wukongdaily
 # Blog: wkdaily.cpolar.cn
 #=================================================
-name: HomeProxy
+name: homeProxy
 
 on:
   workflow_dispatch:
