@@ -2,9 +2,8 @@
 
 # 平台基础URL
 declare -A PLATFORMS=(
-  ["x86_64"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/x86_64"
-  ["aarch64_generic"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_generic"
-  ["aarch64_cortex-a53"]="https://downloads.immortalwrt.org/releases/24.10.2/packages/aarch64_cortex-a53"
+  ["x86_64"]="https://downloads.immortalwrt.org/releases/23.05.4/packages/x86_64"
+  ["aarch64_cortex-a53"]="https://downloads.immortalwrt.org/releases/23.05.4/packages/aarch64_cortex-a53"
 )
 
 # 各类包对应的目录
@@ -12,6 +11,7 @@ declare -A PACKAGE_SOURCES=(
   ["luci-app-homeproxy"]="luci"
   ["luci-i18n-homeproxy-zh-cn"]="luci"
   ["sing-box"]="packages"
+  ["ucode-mod-digest"]="base"
 )
 
 # 当前目录下创建平台输出目录
@@ -53,4 +53,4 @@ for platform in "${!PLATFORMS[@]}"; do
   done
 done
 
-echo "✅ 下载完成，文件已分别存入 x86_64、aarch64_generic、aarch64_cortex-a53 目录中。"
+echo "✅ 下载完成，文件已分别存入 x86_64、aarch64_cortex-a53 目录中。"
