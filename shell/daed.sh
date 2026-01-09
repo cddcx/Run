@@ -55,4 +55,4 @@ for platform in "${!PLATFORMS[@]}"; do
   done
 done
 
-echo "✅ 下载完成，文件已分别存入 x86_64/ aarch64_generic/  aarch64_cortex-a53 目录中。"
+echo "✅ 下载完成，文件已分别存入 x86_64/ aarch64_generic/  aarch64_cortex-a53/ 目录中。"
